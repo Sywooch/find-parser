@@ -1,0 +1,144 @@
+//@import "variables";
+
+/* max-height */
+.generate-styles(max-height, mxh, px, 19, 5);
+.generate-styles(max-height, mxh, px, 10, 100);
+
+/* min-height */
+.generate-styles(min-height, mnh, px, 19, 5);
+.generate-styles(min-height, mnh, px, 10, 100);
+
+/* height */
+.generate-styles(height, h, px, 19, 5);
+.generate-styles(height, h, px, 10, 100);
+
+/* max-width */
+.generate-styles(max-width, mxw, px, 19, 5);
+.generate-styles(max-width, mxw, px, 10, 100);
+
+/* min-width */
+.generate-styles(min-width, mnw, px, 19, 5);
+.generate-styles(min-width, mnw, px, 10, 100);
+
+/* width */
+.generate-styles(width, w, px, 19, 5);
+.generate-styles(width, w, px, 10, 100);
+
+/* font-weight */
+.generate-styles(font-weight, fw, "", 6, 100, 2);
+
+/* font-size */
+.generate-styles(font-size, fs, px, 18, 1, 3);
+.generate-styles(font-size, fs, px, 15, 2, 10);
+.generate-styles(font-size, fs, px, 20, 5, 7);
+
+/* padding */
+.generate-styles(padding, p, px, 10, 1, 0);
+.generate-styles(padding, p, px, 10, 5, 3);
+
+/* padding-top */
+.generate-styles(padding-top, pt, px, 10, 1, 0);
+.generate-styles(padding-top, pt, px, 10, 5, 3);
+
+/* padding-bottom */
+.generate-styles(padding-bottom, pb, px, 10, 1, 0);
+.generate-styles(padding-bottom, pb, px, 10, 5, 3);
+
+/* padding-left */
+.generate-styles(padding-left, pl, px, 10, 1, 0);
+.generate-styles(padding-left, pl, px, 10, 5, 3);
+
+/* padding-right */
+.generate-styles(padding-right, pr, px, 10, 1, 0);
+.generate-styles(padding-right, pr, px, 10, 5, 3);
+
+/* padding vertical */
+.generate-styles(padding-top padding-bottom, pv, px, 10, 5);
+
+/* padding horizontal */
+.generate-styles(padding-left padding-right, ph, px, 10, 5);
+
+/* margin */
+.generate-styles(margin, m, px, 10, 1, 0);
+.generate-styles(margin, m, px, 10, 5, 3);
+
+/* margin-top */
+.generate-styles(margin-top, mt, px, 10, 1, 0);
+.generate-styles(margin-top, mt, px, 10, 5, 3);
+/* margin-top negative */
+.generate-styles(margin-top, mt-n, px, 10, -1, 0);
+.generate-styles(margin-top, mt-n, px, 10, -5, 3);
+
+/* margin-bottom */
+.generate-styles(margin-bottom, mb, px, 10, 1, 0);
+.generate-styles(margin-bottom, mb, px, 10, 5, 3);
+/* margin-bottom negative */
+.generate-styles(margin-bottom, mb-n, px, 10, -1, 0);
+.generate-styles(margin-bottom, mb-n, px, 10, -5, 3);
+
+/* margin-left */
+.generate-styles(margin-left, ml, px, 10, 1, 0);
+.generate-styles(margin-left, ml, px, 10, 5, 3);
+/* margin-left negative */
+.generate-styles(margin-left, ml-n, px, 10, -1, 0);
+.generate-styles(margin-left, ml-n, px, 10, -5, 3);
+
+/* margin-right */
+.generate-styles(margin-right, mr, px, 10, 1, 0);
+.generate-styles(margin-right, mr, px, 10, 5, 3);
+/* margin-right negative */
+.generate-styles(margin-right, mr-n, px, 10, -1, 0);
+.generate-styles(margin-right, mr-n, px, 10, -5, 3);
+
+/* margin vertical */
+.generate-styles(margin-top margin-bottom, mv, px, 10, 5);
+/* margin vertical negative */
+.generate-styles(margin-top margin-bottom, mv-n, px, 10, -5);
+
+/* margin horizontal */
+.generate-styles(margin-left margin-right, mh, px, 10, 5);
+/* margin horizontal negative */
+.generate-styles(margin-left margin-right, mh-n, px, 10, -5);
+
+/* line-height */
+.generate-styles(line-height, lh, px, 8, 5,0);
+
+// генератор стилей
+.generate-styles(@style,@prefix,@unit, @count, @step, @i: 1) when (@i =< @count) {
+  @number: @i * @step;
+
+  // обычные стили
+  .generate-styles-deep(@prefix, @number, @style, @unit);
+
+  // генератор респонсивных стилей
+  @screens: lg, md, sm, xs;
+  .screen(@iterator:1) when (@iterator <= length(@screens)) {
+    @name: extract(@screens, @iterator);
+
+    @media (min-width: ~"@{screen-@{name}-min}") {
+      .generate-styles-deep(~"@{prefix}-@{name}", @number, @style, @unit);
+    }
+
+    .screen((@iterator + 1));
+  }
+  //.screen();
+
+  // рекурсия
+  .generate-styles(@style, @prefix, @unit, @count, @step, (@i + 1));
+}
+
+// вложенный генератор
+.generate-styles-deep(@prefix,@number,@style,@unit) {
+  @abs: abs(@number);
+
+  .@{prefix}-@{abs} {
+    .creatline(@iterator:1) when (@iterator <= length(@style)) {
+      @name: extract(@style, @iterator);
+
+      @{name}: ~"@{number}@{unit}" !important;
+
+      .creatline((@iterator + 1));
+    }
+    .creatline();
+  }
+}
