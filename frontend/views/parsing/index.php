@@ -1,20 +1,11 @@
 <?php
-$xml = file_get_contents('http://zaporozhe.zap.olx.ua/elektronika/telefony/mobilnye-telefony/q-iphone-5s/rss/');
-$movies = new SimpleXMLElement($xml, LIBXML_NOCDATA);
-foreach($movies->channel->item as $item){
-//if(strstr($str, 'Цена: 6 500'))
-    preg_match("/Цена:\s\d(.*?)\sгрн/", $item->description, $m);
-    if(isset($m[0])){
-        preg_match_all("/\d/", str_replace(" ", "", $m[0]), $prices);
-        foreach($prices as $price) {
-//            $data['title'] = $item->title;
-//            $data['price'] = implode('', $price);
-//            $data['link'] = $item->link;
-            echo 'Заголовок: ' . $item->title . '<br>';
-            echo 'Цена: ' . implode('', $price) . '<br>';
-            echo 'Ссылка: ' . $item->link . '<br> <hr>';
+/* @var $this yii\web\View */
 
-        }
-//        print_r($data);
-    }
-}
+use yii\helpers\Html;
+use yii\helpers\Url;
+$this->title = 'Parse button admin';
+?>
+
+<div class="body-content">
+    <?= Html::a('Add to database from parse', Url::to('/parsing/save_olx'), ['class' => 'btn btn-default']) ?>
+</div>
