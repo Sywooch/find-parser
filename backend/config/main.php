@@ -31,8 +31,7 @@ return [
         ],
         'request'=>[
             'class' => 'common\components\Request',
-            'web'=> '/backend/web',
-            'adminUrl' => '/admin'
+            'web'=> '/backend/web'
         ],
         'urlManager' => [
             'scriptUrl'=>'/backend/index.php',

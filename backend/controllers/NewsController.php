@@ -1,15 +1,15 @@
 <?php
 namespace backend\controllers;
 
-use common\controllers\CommentsBaseController;
-use common\controllers\NewsBaseController;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+use common\models\News;
 
 /**
  * Comments controller
  */
-class NewsController extends NewsBaseController
+class NewsController extends Controller
 {
     public function behaviors()
     {
@@ -21,5 +21,15 @@ class NewsController extends NewsBaseController
                 ],
             ],
         ];
+    }
+
+    /**
+     * Вывод новостей
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $news = News::find()->all();
+        return $this->render('index', compact('news'));
     }
 }

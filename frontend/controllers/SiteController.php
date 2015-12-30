@@ -1,13 +1,15 @@
 <?php
 namespace frontend\controllers;
 
-use common\controllers\SiteBaseController;
 use Yii;
-
+use yii\web\Controller;
+use common\models\Category;
+use common\models\Subcategory;
+use common\models\PaymentPlans;
 /**
  * Site controller
  */
-class SiteController extends SiteBaseController
+class SiteController extends Controller
 {
 
     /**
@@ -30,13 +32,17 @@ class SiteController extends SiteBaseController
         ];
     }
 
-    public function oAuthSuccess($client)
+    /**
+     * @return string
+     */
+    public function actionIndex()
     {
-        // get user data from client
-        $userAttributes = $client->getUserAttributes();
-
-//        print_r($userAttributes); exit;
-
-        // do some thing with user data. for example with $userAttributes['email']
+        $this->layout = 'home';
+        $subcat = new Subcategory();
+        $cat = Category::find()->all();
+        $basicModel = PaymentPlans::findOne(['name' => 'Basic']);
+        $advancedModel = PaymentPlans::findOne(['name' => 'Advanced']);
+        $proModel = PaymentPlans::findOne(['name' => 'Pro']);
+        return $this->render('index', compact('cat', 'subcat', 'basic', 'advanced', 'pro', 'basicModel', 'advancedModel', 'proModel'));
     }
 }

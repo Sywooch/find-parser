@@ -1,14 +1,14 @@
 <?php
 namespace frontend\controllers;
 
-use common\controllers\AnswersBaseController;
 use Yii;
 use yii\filters\VerbFilter;
-
+use yii\web\Controller;
+use common\models\Answers;
 /**
  * Comments controller
  */
-class AnswersController extends AnswersBaseController
+class AnswersController extends Controller
 {
     public function behaviors()
     {
@@ -20,5 +20,15 @@ class AnswersController extends AnswersBaseController
                 ],
             ],
         ];
+    }
+    
+    /**
+     * Вывод новостей
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $news = Answers::find()->all();
+        return $this->render('index', compact('news'));
     }
 }

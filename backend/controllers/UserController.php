@@ -80,6 +80,7 @@ class UserController extends Controller
     /**
      * Вывод всех пользователей
      * @return string
+     * @throws ForbiddenHttpException
      */
     public function actionView()
     {
@@ -113,7 +114,7 @@ class UserController extends Controller
         if(User::isAdmin(Yii::$app->user->identity->username)) {
 
             if (User::updateAll(['role' => User::ROLE_ADMIN], ['id' => $id])) {
-                return $this->redirect('/admin/user/view');
+                return $this->redirect('/user/view');
             } else {
                 throw new ForbiddenHttpException('Ошибка установки статуса администратора!', 404);
             }
@@ -126,7 +127,7 @@ class UserController extends Controller
         if(User::isAdmin(Yii::$app->user->identity->username)) {
 
             if (User::updateAll(['role' => User::ROLE_USER], ['id' => $id])) {
-                return $this->redirect('/admin/user/view');
+                return $this->redirect('/user/view');
             } else {
                 throw new ForbiddenHttpException('Ошибка удления статуса администратора!', 404);
             }
@@ -139,7 +140,7 @@ class UserController extends Controller
         if(User::isAdmin(Yii::$app->user->identity->username)) {
 
             if (User::updateAll(['status' => User::STATUS_DELETED], ['id' => $id])) {
-                return $this->redirect('/admin/user/view');
+                return $this->redirect('/user/view');
             } else {
                 throw new ForbiddenHttpException('Ошибка блокирования пользователя!', 404);
             }
@@ -153,7 +154,7 @@ class UserController extends Controller
         if (User::isAdmin(Yii::$app->user->identity->username)) {
 
             if (User::updateAll(['status' => User::STATUS_ACTIVE], ['id' => $id])) {
-                return $this->redirect('/admin/user/view');
+                return $this->redirect('/user/view');
             } else {
                 throw new ForbiddenHttpException('Ошибка разблокирования пользователя', 404);
             }
