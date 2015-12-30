@@ -40,7 +40,7 @@ function initProcessScroll() {
 $('#olx-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_olx/",
+        url: "/parsing/save_olx/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -57,7 +57,7 @@ $('#olx-button').click(function(){
 $('#comfy-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_comfy/",
+        url: "/parsing/save_comfy/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -74,7 +74,7 @@ $('#comfy-button').click(function(){
 $('#foxmart-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_foxmart/",
+        url: "/parsing/save_foxmart/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -91,7 +91,7 @@ $('#foxmart-button').click(function(){
 $('#microtron-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_microtron/",
+        url: "/parsing/save_microtron/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -108,7 +108,7 @@ $('#microtron-button').click(function(){
 $('#rst-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_rst/",
+        url: "/parsing/save_rst/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -125,7 +125,7 @@ $('#rst-button').click(function(){
 $('#rozetka-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_rozetka/",
+        url: "/parsing/save_rozetka/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -142,7 +142,7 @@ $('#rozetka-button').click(function(){
 $('#allo-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_allo/",
+        url: "/parsing/save_allo/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -159,7 +159,7 @@ $('#allo-button').click(function(){
 $('#auto-ria-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_auto_ria/",
+        url: "/parsing/save_auto_ria/",
         async: true,
         success: function(){
             alert('Load was performed.');
@@ -176,7 +176,7 @@ $('#auto-ria-button').click(function(){
 $('#dom-ria-button').click(function(){
     $.ajax({
         method: "POST",
-        url: "/admin/parsing/save_dom_ria/",
+        url: "/parsing/save_dom_ria/",
         async: true,
         success: function(){
             alert('Load was performed.');

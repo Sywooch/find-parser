@@ -29,7 +29,7 @@ class CommentsController extends Controller
     {
         if (User::isAdmin(Yii::$app->user->identity->username)) {
             if (Comments::deleteAll(['id' => $id])) {
-                return $this->redirect('/admin/comments/view');
+                return $this->redirect('/comments/view');
             } else {
                 throw new ForbiddenHttpException('Ошибка удаления комментария!', 404);
             }

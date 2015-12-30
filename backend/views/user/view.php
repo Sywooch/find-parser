@@ -3,7 +3,7 @@
 
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Пользователи сайта';
 Pjax::begin(['id' => 'tableData']);
@@ -57,8 +57,8 @@ Pjax::begin(['id' => 'tableData']);
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return \common\models\User::isBlock($model->username)?'<a href="'.\yii\helpers\Url::to('/admin/user/unblock_user/' . $model->id).'" class="btn btn-mini btn-default">Разблокировать пользователя</a>':
-                                    '<a href="'.\yii\helpers\Url::to('/admin/user/block_user/' . $model->id).'" class="btn btn-mini btn-default">Заблокировать пользователя</a>';
+                                return \common\models\User::isBlock($model->username)?'<a href="'.Url::to('/user/unblock_user/' . $model->id).'" class="btn btn-mini btn-default">Разблокировать пользователя</a>':
+                                    '<a href="'.Url::to('/user/block_user/' . $model->id).'" class="btn btn-mini btn-default">Заблокировать пользователя</a>';
                             }
                         ],
                         [
@@ -68,8 +68,8 @@ Pjax::begin(['id' => 'tableData']);
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return  \common\models\User::isAdmin($model->username)?'<a href="'.\yii\helpers\Url::to('/admin/user/deladmin/' . $model->id).'" class="btn btn-mini btn-default">Удалить статус администатора</a>':
-                                    '<a href="'.\yii\helpers\Url::to('/admin/user/setadmin/' . $model->id).'" class="btn btn-mini btn-default">Сделать администратором</a>';
+                                return  \common\models\User::isAdmin($model->username)?'<a href="'.Url::to('/user/deladmin/' . $model->id).'" class="btn btn-mini btn-default">Удалить статус администатора</a>':
+                                    '<a href="'.Url::to('/user/setadmin/' . $model->id).'" class="btn btn-mini btn-default">Сделать администратором</a>';
                             }
                         ],
                     ]

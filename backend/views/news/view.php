@@ -4,12 +4,12 @@
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Html;
-
+use yii\helpers\Url;
 $this->title = 'Новости на сайте';
 Pjax::begin(['id' => 'tableData']);
 
 
-    echo Html::a('<i class="fa fa-plus"></i> Добавить новость', \yii\helpers\Url::to('/admin/news/save'), ['class' => 'btn btn-default btn-sm ml10']);
+    echo Html::a('<i class="fa fa-plus"></i> Добавить новость', Url::to('/news/save'), ['class' => 'btn btn-default btn-sm ml10']);
 ?>
 
 
@@ -42,7 +42,7 @@ Pjax::begin(['id' => 'tableData']);
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return '<a href="/admin/news/delete/' . $model->id . '" class="btn btn-mini btn-default">Удалить новость</a>';
+                                return '<a href="' . Url::to('/news/delete/'.$model->id) . '" class="btn btn-mini btn-default">Удалить новость</a>';
                             }
                         ],
                         [
@@ -52,7 +52,7 @@ Pjax::begin(['id' => 'tableData']);
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return '<a href="/admin/news/edit/' . $model->id . '" class="btn btn-mini btn-default">Редактировать новость</a>';
+                                return '<a href="' . Url::to('/news/edit/'.$model->id)  . '" class="btn btn-mini btn-default">Редактировать новость</a>';
                             }
                         ],
 

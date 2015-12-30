@@ -17,7 +17,7 @@ use yii\helpers\Url;
             <p><b>Имя: </b><?= $plan->name ?></p>
             <p><b>Максимальное кол-во смс: </b><?= $plan->max_allow_sms ?></p>
             <p><b>Цена: </b><?= $plan->price ?></p>
-            <?= Html::a('Редактировать ' . $plan->name, Url::to('/admin/plans/edit/' . $plan->id), ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Редактировать ' . $plan->name, Url::to('/plans/edit/' . $plan->id), ['class' => 'btn btn-primary']) ?>
         </div>
         <?php } ?>
     </div>

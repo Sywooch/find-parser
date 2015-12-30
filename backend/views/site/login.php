@@ -1,10 +1,9 @@
 <?php
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
 
 $this->title = 'Авторизация';
 
@@ -23,10 +22,7 @@ $fieldOptions2 = [
     <div class="login-logo">
         <a href="#"><b>Admin </b>SISHIK.NET</a>
     </div>
-    <!-- /.login-logo -->
     <div class="login-box-body">
-        <!--        <p class="login-box-msg">Sign in to start your session</p>-->
-
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
         <?= $form
@@ -43,11 +39,9 @@ $fieldOptions2 = [
             <div class="col-xs-8">
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
             </div>
-            <!-- /.col -->
             <div class="col-xs-4">
                 <?= Html::submitButton('Войти', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
-            <!-- /.col -->
         </div>
 
 
@@ -60,11 +54,6 @@ $fieldOptions2 = [
             <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i>
                 через Google+</a>
         </div>
-        <!-- /.social-auth-links -->
-
-        <!--        <a href="#">Я забыл свой пароль</a><br>-->
-        <!--        <a href="register.html" class="text-center">Register a new membership</a>-->
 
     </div>
-    <!-- /.login-box-body -->
-</div><!-- /.login-box -->
+</div>

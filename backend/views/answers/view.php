@@ -4,12 +4,13 @@
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Помощь на сайте';
 Pjax::begin(['id' => 'tableData']);
 
 
-echo Html::a('<i class="fa fa-plus"></i> Добавить', \yii\helpers\Url::to('/admin/answers/save'), ['class' => 'btn btn-default btn-sm ml10']);
+echo Html::a('<i class="fa fa-plus"></i> Добавить', Url::to('/answers/save'), ['class' => 'btn btn-default btn-sm ml10']);
 ?>
 
 
@@ -42,7 +43,7 @@ echo Html::a('<i class="fa fa-plus"></i> Добавить', \yii\helpers\Url::to
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return '<a href="/admin/answers/delete/' . $model->id . '" class="btn btn-mini btn-default">Удалить</a>';
+                                return '<a href="' . Url::to('/answers/delete/'.$model->id ) . '" class="btn btn-mini btn-default">Удалить</a>';
                             }
                         ],
                         [
@@ -52,7 +53,7 @@ echo Html::a('<i class="fa fa-plus"></i> Добавить', \yii\helpers\Url::to
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return '<a href="/admin/answers/edit/' . $model->id . '" class="btn btn-mini btn-default">Редактировать</a>';
+                                return '<a href="' . Url::to('/answers/edit/'.$model->id ). '" class="btn btn-mini btn-default">Редактировать</a>';
                             }
                         ],
 

@@ -46,7 +46,7 @@ class AnswersController extends Controller
             if (Yii::$app->request->isPost) {
                 $item = Yii::$app->request->post('Answers');
                 if (Answers::updateAll(['text' => $item['text'], 'answer' => $item['answer']], ['id' => $id])) {
-                    return $this->redirect('/admin/answers/view');
+                    return $this->redirect('/answers/view');
                 } else {
                     throw new ForbiddenHttpException('Ошибка обновления помощи', 404);
                 }
@@ -61,7 +61,7 @@ class AnswersController extends Controller
     {
         if (User::isAdmin(Yii::$app->user->identity->username)) {
             if (Answers::deleteAll(['id' => $id])) {
-                return $this->redirect('/admin/answers/view');
+                return $this->redirect('/answers/view');
             } else {
                 throw new ForbiddenHttpException('Ошибка добавления помощи', 404);
             }
@@ -76,7 +76,7 @@ class AnswersController extends Controller
             $model = new Answers();
             if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
                 if ($model->save()) {
-                    return $this->redirect('/admin/answers/view');
+                    return $this->redirect('/answers/view');
                 }
             }
             return $this->render('save', compact('model'));

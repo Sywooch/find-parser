@@ -33,7 +33,7 @@ $form = ActiveForm::begin();
                             'class' => 'btn btn-success'
                         ]
                     ) ?>
-                    <?= Html::a('Назад', Url::to('/admin/plans/index'), ['class' => 'btn btn-success']) ?>
+                    <?= Html::a('Назад', Url::to('/plans/index'), ['class' => 'btn btn-success']) ?>
                 </div>
             </div>
         </div>

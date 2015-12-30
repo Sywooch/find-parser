@@ -44,7 +44,7 @@ $form = ActiveForm::begin();
                             'class' => 'btn btn-success'
                         ]
                     ) ?>
-                    <?= Html::a('Назад', Url::to('/admin/news/view'), ['class' => 'btn btn-success']) ?>
+                    <?= Html::a('Назад', Url::to('/news/view'), ['class' => 'btn btn-success']) ?>
                 </div>
             </div>
         </div>

@@ -4,6 +4,10 @@ namespace backend\controllers;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\User;
+use common\models\PaymentPlans;
+use yii;
+use yii\web\ForbiddenHttpException;
 class PlansController extends Controller
 {
 
@@ -43,7 +47,7 @@ class PlansController extends Controller
             if (Yii::$app->request->isPost) {
                 $item = Yii::$app->request->post('PaymentPlans');
                 if ($plan = PaymentPlans::updateAll(['name' => $item['name'], 'max_allow_sms' => $item['max_allow_sms'], 'price' => $item['price']], ['id' => $id])) {
-                    return $this->redirect('/admin/plans/index');
+                    return $this->redirect('/plans/index');
                 } else {
                     throw new ForbiddenHttpException('Ошибка обновление тарифного плана!', 404);
                 }

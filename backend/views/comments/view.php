@@ -48,7 +48,7 @@ Pjax::begin(['id' => 'tableData'])
                                 'class' => 'text-left mnw250'
                             ],
                             'value' => function ($model) {
-                                return '<a href="'.Url::to('/admin/comments/delete/').$model->id.'">Удалить комментарий</a>';
+                                return '<a href="'.Url::to('/comments/delete/'.$model->id).'">Удалить комментарий</a>';
                             }
                         ]
                     ]
