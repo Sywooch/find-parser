@@ -1,4 +1,9 @@
 $(document).ready(function ($) {
+    $("[name=btn_text]").attr("class", "btn btn-success btn-lg");
+    $("[name=btn_text]").attr("src", "");
+    $("[name=btn_text]").attr("style", "border:none");
+    $("[name=btn_text]").attr("value", "Оплатить");
+    //$("[name=btn_text]").val("<i class='fa fa-envelope-o icon-fa'></i>");
 
     $(document).on('pjax:end', function (a, b) {
         $(a.target).stop().animate({'opacity': 1});

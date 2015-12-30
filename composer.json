@@ -17,7 +17,21 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "yiisoft/yii2-authclient": "*",
+        "aayaresko/yii2-advanced-html-dom": "*",
+        "alexgx/yii2-phpexcel": "*",
+        "wapmorgan/unified-archive": "dev-master",
+        "sunra/php-simple-html-dom-parser": "v1.5.0",
+        "richweber/yii2-alpha-sms": "*",
+        "delagics/yii2-liqpay": "^1.0",
+        "linslin/yii2-curl": "*",
+        "ijackua/yii2-sharelinks-widget": "dev-master",
+        "2amigos/yii2-file-upload-widget": "~1.0",
+        "2amigos/yii2-tinymce-widget": "~1.1",
+
+        "symfony/css-selector": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

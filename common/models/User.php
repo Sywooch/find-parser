@@ -12,16 +12,15 @@ use yii\web\IdentityInterface;
  *
  * @property integer $id
  * @property string $username
- * @property string $name
- * @property string $surname
- * @property string $patronymic
+ * @property string $fio
+ * @property integer $plan_id
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
- * @property string $birthday
  * @property string $phone
  * @property string $auth_key
  * @property integer $status
+ * @property integer $role
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -30,6 +29,10 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+
+    const ROLE_USER = 0;
+    const ROLE_ADMIN = 10;
+    const ROLE_GOD = 666;
 
     /**
      * @inheritdoc
@@ -57,6 +60,13 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+
+            ['role', 'default', 'value' => self::ROLE_USER],
+            ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN, self::ROLE_GOD]],
+
+//            ['plan_id', 'default', 'value' => 1],
+//            [['username', 'fio', 'phone'], 'safe'],
+//            ['email', 'email']
         ];
     }
 
@@ -117,7 +127,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -189,5 +199,43 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * Пока не введен контроль ролей, временно пользоваться будем этим
+     * проверка, является ли пользователь админом
+     * @param $username
+     * @return bool
+     */
+    public static function isAdmin($username)
+    {
+        $model = self::find()->where([
+            'username' => $username
+        ])->andWhere([
+            'role' => self::ROLE_ADMIN
+        ])->all();
+        if ($model) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public static function isBlock($username)
+    {
+        $model = self::find()->where([
+            'username' => $username
+        ])->andWhere([
+            'status' => self::STATUS_DELETED
+        ])->one();
+        if ($model) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
